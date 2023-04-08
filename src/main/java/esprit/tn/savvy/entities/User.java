@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -26,5 +27,7 @@ public class User implements Serializable {
      Role role;
 
      String email;
+     @ManyToMany(mappedBy = "User")
+    Set<User> users ;
 
 }
