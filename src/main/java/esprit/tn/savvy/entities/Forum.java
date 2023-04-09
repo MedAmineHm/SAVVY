@@ -21,8 +21,8 @@ public class Forum implements Serializable {
     Integer idForum;
     String Question;
     String Reponse;
-    @OneToMany(mappedBy = "forum")
+    @OneToMany
     Set<Event> events;
-    @OneToMany(mappedBy = "forum")
+    @ManyToMany
     Set<User> users;
 }

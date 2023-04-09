@@ -23,8 +23,6 @@ public class Reclamation implements Serializable {
     String Etat;
     String Contenu;
 
-    @OneToOne(mappedBy = "reclamation")
-    Set<Ressources> ressources;
 
 
 }

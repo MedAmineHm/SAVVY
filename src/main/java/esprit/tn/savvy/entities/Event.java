@@ -22,5 +22,6 @@ public class Event implements Serializable {
     Integer idEvent;
     Date dateDebut;
     Date dateFin;
-
+    @ManyToMany
+    Set<User>users;
 }

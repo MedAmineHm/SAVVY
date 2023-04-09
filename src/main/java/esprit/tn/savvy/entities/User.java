@@ -25,19 +25,19 @@ public class User implements Serializable {
      String lastName;
 
      String email;
-     @OneToMany(mappedBy = "users")
+     @OneToMany
      Set<Reclamation> reclamations ;
-     @OneToMany(mappedBy = "users")
+     @OneToMany
     Set<Ressources> ressources;
-     @OneToMany(mappedBy = "users")
+     @OneToMany
     Set<Donnation> donnations;
-     @OneToMany(mappedBy = "users")
+     @ManyToMany(mappedBy = "users")
     Set<Event> events;
      @ManyToMany(mappedBy = "users")
-    Set<Forum> forums;
-     @OneToOne(mappedBy = "users")
-    Set<Role>roles;
-     @OneToMany(mappedBy = "users")
+     Set<Forum> forums;
+     @OneToOne
+     Role roles;
+     @OneToMany
     Set<Delivery>deliveries;
 
 }

@@ -24,8 +24,8 @@ public class Ressources implements Serializable {
     Integer quantityRess;
     String img;
 
-   @OneToOne(mappedBy = "ressources")
-    Set<Reclamation> reclamations;
-   @OneToOne(mappedBy = "ressources")
-    Set<Delivery>deliveries;
+   @OneToOne
+    Reclamation reclamations;
+   @ManyToOne
+    Delivery deliveries;
 }

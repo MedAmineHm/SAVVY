@@ -21,7 +21,7 @@ public class Delivery implements Serializable {
 Integer idDelivery;
 String typeDelivery;
 @ManyToOne
-    Set<DeliveryPerson>deliveryPeople;
+DeliveryPerson deliveryPeople;
 
 
 

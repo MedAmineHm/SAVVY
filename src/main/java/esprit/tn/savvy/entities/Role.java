@@ -20,6 +20,4 @@ public class Role implements Serializable {
     @Column(name = "idRole")
     Integer idRole;
     String Role;
-    @OneToOne(mappedBy = "role")
-    Set<User>users;
 }
