@@ -18,5 +18,6 @@ public class Partnership implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPartnership")
     Integer idPartnership;
+    String nomP;
 
 }

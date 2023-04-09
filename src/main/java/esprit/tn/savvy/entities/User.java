@@ -23,11 +23,21 @@ public class User implements Serializable {
      String firstName;
 
      String lastName;
-     @Enumerated(EnumType.STRING)
-     Role role;
 
      String email;
-     @ManyToMany(mappedBy = "User")
-    Set<User> users ;
+     @OneToMany(mappedBy = "users")
+     Set<Reclamation> reclamations ;
+     @OneToMany(mappedBy = "users")
+    Set<Ressources> ressources;
+     @OneToMany(mappedBy = "users")
+    Set<Donnation> donnations;
+     @OneToMany(mappedBy = "users")
+    Set<Event> events;
+     @ManyToMany(mappedBy = "users")
+    Set<Forum> forums;
+     @OneToOne(mappedBy = "users")
+    Set<Role>roles;
+     @OneToMany(mappedBy = "users")
+    Set<Delivery>deliveries;
 
 }

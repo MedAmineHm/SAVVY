@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table( name = "Reclamation")
@@ -22,6 +23,8 @@ public class Reclamation implements Serializable {
     String Etat;
     String Contenu;
 
+    @OneToOne(mappedBy = "reclamation")
+    Set<Ressources> ressources;
 
 
 }

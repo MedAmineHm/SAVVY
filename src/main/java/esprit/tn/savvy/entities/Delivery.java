@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "Delivery")
@@ -19,6 +20,9 @@ public class Delivery implements Serializable {
     @Column(name = "idDelivery")
 Integer idDelivery;
 String typeDelivery;
+@ManyToOne
+    Set<DeliveryPerson>deliveryPeople;
+
 
 
 

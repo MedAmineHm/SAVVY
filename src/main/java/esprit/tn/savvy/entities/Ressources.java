@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table( name = "Ressources")
@@ -23,5 +24,8 @@ public class Ressources implements Serializable {
     Integer quantityRess;
     String img;
 
-
+   @OneToOne(mappedBy = "ressources")
+    Set<Reclamation> reclamations;
+   @OneToOne(mappedBy = "ressources")
+    Set<Delivery>deliveries;
 }

@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table( name = "Forum")
@@ -20,4 +21,8 @@ public class Forum implements Serializable {
     Integer idForum;
     String Question;
     String Reponse;
+    @OneToMany(mappedBy = "forum")
+    Set<Event> events;
+    @OneToMany(mappedBy = "forum")
+    Set<User> users;
 }

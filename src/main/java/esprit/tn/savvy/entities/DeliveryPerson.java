@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "DeliveryPerson")
+@Table(name = "Livreur")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,12 +15,13 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DeliveryPerson implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="personId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "personId")
     Integer personId;
     String firstNameP;
 
     String lastNameP;
     Integer NumberP;
     String emailP;
+
 }
