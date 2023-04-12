@@ -1,5 +1,6 @@
 package esprit.tn.savvy.services;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Ressources;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface IRessourcesService {
     void deleteRessources(Integer idRess);
     Ressources assignUserToRessources(Integer idUser, Integer ressourcesIdidRess);
 
+    List<Ressources> findRessourcesByCategory(Category category);
 }
 
 

@@ -1,5 +1,6 @@
 package esprit.tn.savvy.controller;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Ressources;
 import esprit.tn.savvy.entities.User;
 import esprit.tn.savvy.repositories.RessourcesRepository;
@@ -49,6 +50,10 @@ public class RessourcesController {
     @PostMapping("/ressources/{ressourcesId}/users/{userId}")
     public Ressources assignUserToRessources(@PathVariable Integer idRess, @PathVariable Integer idUser) {
         return ressourcesService.assignUserToRessources(idUser, idRess);
+    }
+    @GetMapping("/ressources/category/{category}")
+    public List<Ressources> findRessourcesByCategory(@PathVariable Category category) {
+        return ressourcesService.findRessourcesByCategory(category);
     }
 
 

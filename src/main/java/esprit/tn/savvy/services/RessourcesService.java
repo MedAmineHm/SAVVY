@@ -1,5 +1,6 @@
 package esprit.tn.savvy.services;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Ressources;
 import esprit.tn.savvy.entities.User;
 import esprit.tn.savvy.repositories.RessourcesRepository;
@@ -8,6 +9,7 @@ import lombok.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -53,6 +55,10 @@ public class RessourcesService implements IRessourcesService  {
         ressources.setUser(user);
         return ressourcesRepository.save(ressources);
     }
+    public List<Ressources> findRessourcesByCategory(Category category) {
+        return ressourcesRepository.findByCategory(category);
+    }
+
 
 
 }
