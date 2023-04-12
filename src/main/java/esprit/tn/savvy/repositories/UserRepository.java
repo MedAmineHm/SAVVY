@@ -1,2 +1,7 @@
-package esprit.tn.savvy.repositories;public interface UserRepository {
+package esprit.tn.savvy.repositories;
+
+import esprit.tn.savvy.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 }

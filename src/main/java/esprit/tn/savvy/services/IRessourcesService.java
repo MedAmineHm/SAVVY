@@ -10,6 +10,8 @@ public interface IRessourcesService {
     Ressources createRessources(Ressources ressources);
     Ressources updateRessources(Integer idRess, Ressources ressources);
     void deleteRessources(Integer idRess);
+    Ressources assignUserToRessources(Integer idUser, Integer ressourcesIdidRess);
+
 }
 
 

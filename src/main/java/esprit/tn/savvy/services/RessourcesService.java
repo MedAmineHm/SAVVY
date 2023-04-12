@@ -1,7 +1,9 @@
 package esprit.tn.savvy.services;
 
 import esprit.tn.savvy.entities.Ressources;
+import esprit.tn.savvy.entities.User;
 import esprit.tn.savvy.repositories.RessourcesRepository;
+import esprit.tn.savvy.repositories.UserRepository;
 import lombok.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,18 @@ public class RessourcesService implements IRessourcesService  {
     public void deleteRessources(Integer idRess) {
         getRessourcesById(idRess); // to check if resource exists
         ressourcesRepository.deleteById(idRess);
+    }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public Ressources assignUserToRessources(Integer userId, Integer ressourcesId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user idUser"));
+        Ressources ressources = ressourcesRepository.findById(ressourcesId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid ressources idRess"));
+        ressources.setUser(user);
+        return ressourcesRepository.save(ressources);
     }
 
 

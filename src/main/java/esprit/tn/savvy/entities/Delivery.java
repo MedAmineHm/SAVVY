@@ -22,7 +22,7 @@ public class Delivery implements Serializable {
 Integer idDelivery;
 String typeDelivery;
 @ManyToOne
-DeliveryPerson deliveryPeople;
+DeliveryPerson deliveryPerson;
 @ManyToMany
 List<Ressources> ressources;
 

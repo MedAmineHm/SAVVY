@@ -34,4 +34,5 @@ public class Ressources implements Serializable {
     User user;
     @ManyToMany(mappedBy = "ressources")
      List<Delivery> deliveries;
+
 }

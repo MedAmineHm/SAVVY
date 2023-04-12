@@ -1,6 +1,9 @@
 package esprit.tn.savvy.controller;
 
 import esprit.tn.savvy.entities.Ressources;
+import esprit.tn.savvy.entities.User;
+import esprit.tn.savvy.repositories.RessourcesRepository;
+import esprit.tn.savvy.repositories.UserRepository;
 import esprit.tn.savvy.services.RessourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +39,16 @@ public class RessourcesController {
     @DeleteMapping("/{id}")
     public void deleteRessources(@PathVariable Integer idRess) {
         ressourcesService.deleteRessources(idRess);
+    }
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private RessourcesRepository ressourcesRepository;
+
+    @PostMapping("/ressources/{ressourcesId}/users/{userId}")
+    public Ressources assignUserToRessources(@PathVariable Integer idRess, @PathVariable Integer idUser) {
+        return ressourcesService.assignUserToRessources(idUser, idRess);
     }
 
 
