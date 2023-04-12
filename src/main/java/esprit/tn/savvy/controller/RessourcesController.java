@@ -47,9 +47,9 @@ public class RessourcesController {
     @Autowired
     private RessourcesRepository ressourcesRepository;
 
-    @PostMapping("/ressources/{ressourcesId}/users/{userId}")
-    public Ressources assignUserToRessources(@PathVariable Integer idRess, @PathVariable Integer idUser) {
-        return ressourcesService.assignUserToRessources(idUser, idRess);
+    @PostMapping("ramzi/{ressourcesId}/{userId}")
+    public Ressources assignUserToRessources(@PathVariable Integer ressourcesId, @PathVariable Integer userId) {
+        return ressourcesService.assignUserToRessources(ressourcesId, userId);
     }
     @GetMapping("/ressources/category/{category}")
     public List<Ressources> findRessourcesByCategory(@PathVariable Category category) {
