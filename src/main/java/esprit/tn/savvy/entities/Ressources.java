@@ -5,7 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table( name = "Ressources")
@@ -26,6 +26,6 @@ public class Ressources implements Serializable {
 
    @OneToOne
     Reclamation reclamations;
-   @ManyToOne
-    Delivery deliveries;
+   @ManyToMany(mappedBy = "ressources")
+List<Delivery> deliveries;
 }

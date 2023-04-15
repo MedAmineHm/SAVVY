@@ -5,9 +5,10 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "Livreur")
+@Table(name = "DeliveryPerson")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,4 +25,6 @@ public class DeliveryPerson implements Serializable {
     Integer NumberP;
     String emailP;
 
+    @OneToMany
+    List<Delivery> deliveries;
 }

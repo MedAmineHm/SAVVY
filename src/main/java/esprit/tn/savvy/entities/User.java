@@ -37,7 +37,7 @@ public class User implements Serializable {
      Set<Forum> forums;
      @OneToOne
      Role roles;
-     @OneToMany
-    Set<Delivery>deliveries;
+     @OneToMany(mappedBy = "user")
+    Set<Delivery> deliveries;
 
 }
