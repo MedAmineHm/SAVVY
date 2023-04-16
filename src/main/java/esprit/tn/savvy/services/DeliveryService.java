@@ -1,8 +1,10 @@
 package esprit.tn.savvy.services;
 
 import esprit.tn.savvy.entities.Delivery;
+import esprit.tn.savvy.entities.Ressources;
 import esprit.tn.savvy.entities.Status;
 import esprit.tn.savvy.repositories.RepDelivery;
+import esprit.tn.savvy.repositories.RepRessources;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DeliveryService implements IDeliveryService{
     RepDelivery rd;
+    RepRessources rr;
 
     @Override
     public Delivery adddelivery(Delivery delivery) {
@@ -84,6 +87,20 @@ public class DeliveryService implements IDeliveryService{
         double distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         distance = distance * 111.319;
         return distance;
+    }
+
+    @Override
+    public Delivery assignDeliveryRessources(Integer idRess, Integer idDelivery) {
+        Delivery delivery = rd.findById(idDelivery).orElse(null);
+        Ressources ressources = rr.findById(idRess).orElse(null);
+        if (delivery != null && ressources != null) {
+            List<Ressources> resources = delivery.getRessources();
+            resources.add(ressources);
+            delivery.setRessources(resources);
+            rd.save(delivery);
+        }
+        return delivery;
+
     }
 
 

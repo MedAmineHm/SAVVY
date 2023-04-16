@@ -25,4 +25,6 @@ public interface IDeliveryService {
     String getTrackingInformation(Delivery delivery);
 
     double calculateDistance(double[] origin, double[] destination);
+
+    Delivery assignDeliveryRessources(Integer idRess, Integer idDelivery);
 }

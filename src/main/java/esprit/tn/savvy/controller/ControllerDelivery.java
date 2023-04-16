@@ -62,6 +62,11 @@ public class ControllerDelivery {
     {
         return deliveryService.findByDeliveryDate(deliveryDate);
     }
+    @PutMapping("/assign/{idRess}/{idDelivery}")
+    public Delivery assignDeliveryRessources(@PathVariable("idRess") Integer idRess, @PathVariable("idDelivery") Integer idDelivery) {
+        return deliveryService.assignDeliveryRessources(idRess, idDelivery);
+    }
+
 
     @GetMapping("/{id}/track")
     public ResponseEntity<?> trackDelivery(@PathVariable("id") Integer deliveryId) {
