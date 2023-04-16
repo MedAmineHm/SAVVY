@@ -1,5 +1,6 @@
 package esprit.tn.savvy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -27,7 +28,8 @@ public class User implements Serializable {
      String email;
      @OneToMany
      Set<Reclamation> reclamations ;
-     @OneToMany
+     @OneToMany(mappedBy = "user")
+     @JsonIgnore
     Set<Ressources> ressources;
      @OneToMany
     Set<Donnation> donnations;
@@ -37,7 +39,6 @@ public class User implements Serializable {
      Set<Forum> forums;
      @OneToOne
      Role roles;
-     @OneToMany(mappedBy = "user")
-    Set<Delivery> deliveries;
+
 
 }

@@ -21,6 +21,7 @@ import java.util.List;
 public class ControllerDelivery {
     IDeliveryService deliveryService;
 
+
     @PostMapping("add")
     public Delivery adddelivery(@RequestBody Delivery delivery) {
         return deliveryService.adddelivery(delivery);
@@ -75,5 +76,9 @@ public class ControllerDelivery {
         }
     }
 
-
+    @GetMapping("calculate/{origin}/{destination}")
+    public double calculateDistance(@PathVariable("origin") double[] origin,@PathVariable("destination") double[] destination)
+    {
+        return deliveryService.calculateDistance(origin,destination);
+    }
 }

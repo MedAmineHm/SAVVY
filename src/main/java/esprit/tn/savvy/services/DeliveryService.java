@@ -75,4 +75,16 @@ public class DeliveryService implements IDeliveryService{
         }
     }
 
+    @Override
+    public double calculateDistance(double[] origin, double[] destination) {
+        double x1 = origin[0];
+        double y1 = origin[1];
+        double x2 = destination[0];
+        double y2 = destination[1];
+        double distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        distance = distance * 111.319;
+        return distance;
+    }
+
+
 }

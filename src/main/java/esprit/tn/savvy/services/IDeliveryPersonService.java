@@ -18,7 +18,6 @@ public interface IDeliveryPersonService {
     DeliveryPerson assignDeliveryToDeliveryPerson(Integer idPerson, Integer idDelivery);
 
 
-    List<DeliveryPerson> getAvailableDeliveryPerson();
 
 
     List<DeliveryPerson> getAvailable();

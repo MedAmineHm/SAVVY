@@ -33,9 +33,6 @@ Status status;
 @JsonIgnore
 DeliveryPerson deliveryPerson;
 
-@ManyToOne
-User user;
-
 @ManyToMany
 List<Ressources> ressources;
 

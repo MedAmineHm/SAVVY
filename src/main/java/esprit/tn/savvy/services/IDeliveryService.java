@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface IDeliveryService {
+
     Delivery adddelivery(Delivery delivery);
 
     List<Delivery> getAllDelivery();
@@ -23,4 +24,5 @@ public interface IDeliveryService {
     List<Delivery> findByDeliveryDate(Date deliveryDate);
     String getTrackingInformation(Delivery delivery);
 
+    double calculateDistance(double[] origin, double[] destination);
 }

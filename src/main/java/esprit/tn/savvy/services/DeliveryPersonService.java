@@ -63,17 +63,7 @@ public class DeliveryPersonService implements IDeliveryPersonService {
         return deliveryPerson;
     }
 
-    @Override
-    public List<DeliveryPerson> getAvailableDeliveryPerson() {
-        List<DeliveryPerson> deliveryPersons = rdp.findAll();
-        List<DeliveryPerson> availableDeliveryPersons = new ArrayList<>();
-        for (DeliveryPerson deliveryPerson : deliveryPersons) {
-            if (deliveryPerson.getDeliveries().size() < 10) {
-                availableDeliveryPersons.add(deliveryPerson);
-            }
-        }
-        return availableDeliveryPersons;
-    }
+
 
     @Override
     public List<DeliveryPerson> getAvailable() {
@@ -90,7 +80,7 @@ public class DeliveryPersonService implements IDeliveryPersonService {
     public DeliveryPerson assignDeliveryToDeliveryPersonAvailable(Integer idDelivery) {
         Delivery delivery = rd.findById(idDelivery).orElse(null);
         if (delivery != null) {
-            List<DeliveryPerson> availableDeliveryPersons = getAvailableDeliveryPerson();
+            List<DeliveryPerson> availableDeliveryPersons = getAvailable();
             if (availableDeliveryPersons.isEmpty()) {
                 throw new RuntimeException("No available delivery person");
             } else {

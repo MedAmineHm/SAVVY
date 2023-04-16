@@ -1,5 +1,6 @@
 package esprit.tn.savvy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -27,5 +28,9 @@ public class Ressources implements Serializable {
    @OneToOne
     Reclamation reclamations;
    @ManyToMany(mappedBy = "ressources")
+   @JsonIgnore
 List<Delivery> deliveries;
+
+   @ManyToOne
+    User user;
 }

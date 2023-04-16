@@ -48,10 +48,7 @@ public class ControllerDeliveryPerson {
     public DeliveryPerson assignDeliveryPersonToDelivery(@PathVariable("idPerson") Integer idPerson, @PathVariable("idDelivery") Integer idDelivery) {
         return deliveryPersonService.assignDeliveryToDeliveryPerson(idPerson, idDelivery);
     }
-    @GetMapping("/available")
-    public List<DeliveryPerson> getAvailableDeliveryPerson() {
-        return deliveryPersonService.getAvailableDeliveryPerson();
-    }
+
 
 
     @GetMapping("/availablePerson")
