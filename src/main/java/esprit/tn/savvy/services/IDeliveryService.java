@@ -27,4 +27,5 @@ public interface IDeliveryService {
     double calculateDistance(double[] origin, double[] destination);
 
     Delivery assignDeliveryRessources(Integer idRess, Integer idDelivery);
+    void sendDeliveryNotification(Delivery delivery);
 }

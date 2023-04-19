@@ -2,7 +2,10 @@ package esprit.tn.savvy.controller;
 
 import esprit.tn.savvy.entities.Delivery;
 import esprit.tn.savvy.entities.Status;
+import esprit.tn.savvy.entities.User;
+import esprit.tn.savvy.services.EmailService;
 import esprit.tn.savvy.services.IDeliveryService;
+import esprit.tn.savvy.services.IUserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,6 +23,9 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ControllerDelivery {
     IDeliveryService deliveryService;
+    IUserService userService;
+    EmailService emailService;
+
 
 
     @PostMapping("add")
@@ -86,4 +92,30 @@ public class ControllerDelivery {
     {
         return deliveryService.calculateDistance(origin,destination);
     }
+    @PostMapping("/notification")
+    public ResponseEntity<String> sendDeliveryNotification(@RequestBody Delivery delivery, @RequestParam String email) {
+        User user = userService.findUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        if (delivery.getStatus() == Status.PENDING) {
+            String message = "Dear " + user.getFirstName() + ",\n\n" +
+                    "A new delivery is pending and requires your attention. Please check the delivery details and take the necessary actions.\n\n" +
+                    "Delivery details:\n" +
+                    "Type: " + delivery.getTypeDelivery() + "\n" +
+                    "Origin: " + delivery.getOrigin() + "\n" +
+                    "Destination: " + delivery.getDestination() + "\n" +
+                    "Delivery date: " + delivery.getDeliveryDate() + "\n\n" +
+                    "Best regards,\n" +
+                    "The Savvy team";
+            emailService.sendEmail(user.getEmail(), "New delivery pending", message);
+            return ResponseEntity.ok().body("Notification sent successfully");
+        } else {
+            return ResponseEntity.badRequest().body("Delivery status is not pending");
+        }
+    }
+
+
+
 }
