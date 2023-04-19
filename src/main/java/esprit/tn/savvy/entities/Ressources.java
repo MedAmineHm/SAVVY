@@ -1,10 +1,12 @@
 package esprit.tn.savvy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table( name = "Ressources")
@@ -23,5 +25,12 @@ public class Ressources implements Serializable {
     Integer quantityRess;
     String img;
 
+    @OneToOne
+    Reclamation reclamations;
+    @ManyToMany(mappedBy = "ressources")
+    @JsonIgnore
+    List<Delivery> deliveries;
 
+    @ManyToOne
+    User user;
 }

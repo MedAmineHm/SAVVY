@@ -21,5 +21,9 @@ public class Donnation implements Serializable {
     Integer idDonn;
     Integer quantityDonn;
     Date dateDonn;
+    @ManyToOne
+    Ressources ressources;
+
+
 
 }

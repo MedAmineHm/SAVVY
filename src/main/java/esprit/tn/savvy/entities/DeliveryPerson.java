@@ -5,25 +5,26 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table( name = "Event")
+@Table(name = "DeliveryPerson")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
-public class Event implements Serializable {
+public class DeliveryPerson implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEvent")
-    Integer idEvent;
-    Date dateDebut;
-    Date dateFin;
-    @ManyToMany
-    Set<User> users ;
+    @Column(name = "personId")
+    Integer personId;
+    String firstNameP;
+
+    String lastNameP;
+    Integer NumberP;
+    String emailP;
+
+    @OneToMany
+    List<Delivery> deliveries;
 }
