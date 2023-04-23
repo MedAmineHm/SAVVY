@@ -26,7 +26,7 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "UserId")
         private Long UserId;
-        private String name;
+        private String firstName;
         private String lastName;
         private String username;
         private String email;

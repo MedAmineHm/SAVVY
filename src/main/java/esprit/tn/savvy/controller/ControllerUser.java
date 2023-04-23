@@ -34,14 +34,14 @@ public class ControllerUser  {
     public User getUsersById(Long Id) {
         return iUserService.findUserById(Id);
     }
-@GetMapping("{UserId}")
+@GetMapping("retrieve/{UserId}")
 public User retrieveUser(@PathVariable Long UserId) {
     User user = iUserService.retrieveUser(UserId);
     if (user != null) {
     }  return user;
 
 }
-    @DeleteMapping("{UserId}")
+    @DeleteMapping("/remove/{UserId}")
     public void removeUserById(@PathVariable Long UserId) {
         User user = iUserService.retrieveUser(UserId);
         if (user != null) {
@@ -49,6 +49,11 @@ public User retrieveUser(@PathVariable Long UserId) {
 
         }
     }
+    @PutMapping("/update/{UserId}")
+    public User updateUser(@PathVariable Long UserId, @RequestBody User user) {
+        user.setUserId(UserId);
+        return iUserService.updateUser(user);
+}
 }
 
 

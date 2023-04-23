@@ -14,6 +14,19 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserService implements IUserService {
     UserRepository ur ;
+
+    public  User updateUser(User user) {
+        User oldUser = ur.findById(user.getUserId()).get();
+        oldUser.setFirstName(user.getFirstName());
+        oldUser.setLastName(user.getLastName());
+        oldUser.setAddress(user.getAddress());
+        oldUser.setTelNum(user.getTelNum());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setDayOfBirth(user.getDayOfBirth());
+        oldUser.setCin(user.getCin());
+        return ur.save(oldUser);
+    }
+
     @Override
     public List<User> findAll() {
         return ur.findAll();

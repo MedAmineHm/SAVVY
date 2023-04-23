@@ -14,4 +14,7 @@ public interface IUserService  {
 
     void removeUser(User user);
     User retrieveUser(Long UserId);
+
+
+    User updateUser(User user);
 }
