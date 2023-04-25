@@ -148,6 +148,15 @@ public class RessourcesService implements IRessourcesService  {
 
         return mostFrequentCategory;
     }
+    @Override
+    public void notifyWhenResourceCountReached(int count) {
+        int currentCount = getAllRessources().size();
+        if (currentCount >= count) {
+            // envoyer une notification par email, sms, etc.
+            System.out.println("Le nombre de ressources est atteint !");
+        }
+    }
+
 
 
 

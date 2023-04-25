@@ -125,6 +125,11 @@ public class RessourcesController {
     public Category getMostFrequentCategory() {
         return ressourcesService.getMostFrequentCategory();
     }
+    @GetMapping("/check-resource-count/{count}")
+    public ResponseEntity<String> checkResourceCount(@PathVariable int count) {
+        ressourcesService.notifyWhenResourceCountReached(count);
+        return ResponseEntity.ok("Check resource count successful");
+    }
 
 
 

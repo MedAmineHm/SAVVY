@@ -39,6 +39,8 @@ public interface IRessourcesService {
     Double getAverageResourcesPerUser();
 
     Category getMostFrequentCategory();
+
+    void notifyWhenResourceCountReached(int count);
 }
 
 
