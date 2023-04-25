@@ -156,7 +156,11 @@ public class RessourcesService implements IRessourcesService  {
             System.out.println("Le nombre de ressources est atteint !");
         }
     }
-
+    @Override
+    public List<Ressources> searchByTitle(String title) {
+        List<Ressources> ressources = ressourcesRepository.findByTitleContainingIgnoreCase(title);
+        return ressources;
+    }
 
 
 

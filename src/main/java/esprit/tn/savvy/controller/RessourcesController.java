@@ -130,16 +130,15 @@ public class RessourcesController {
         ressourcesService.notifyWhenResourceCountReached(count);
         return ResponseEntity.ok("Check resource count successful");
     }
-
-
-
-
-
-
-
-
-
-
+    @GetMapping("/search/title")
+    public ResponseEntity<List<Ressources>> searchByTitle(@RequestParam String title) {
+        List<Ressources> ressources = ressourcesService.searchByTitle(title);
+        if (ressources.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(ressources);
+        }
+    }
 
 }
 

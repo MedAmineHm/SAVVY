@@ -41,6 +41,8 @@ public interface IRessourcesService {
     Category getMostFrequentCategory();
 
     void notifyWhenResourceCountReached(int count);
+
+    List<Ressources> searchByTitle(String title);
 }
 
 

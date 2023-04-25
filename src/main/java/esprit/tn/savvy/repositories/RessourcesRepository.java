@@ -24,4 +24,8 @@ public interface RessourcesRepository extends JpaRepository<Ressources, Integer>
     List<Ressources> findByCategoryAndDelivery(@Param("category") Category category, @Param("delivery") Delivery delivery);
 
     List<Ressources> findByUser(User user);
-}
+
+    @Query("SELECT r FROM Ressources r WHERE LOWER(r.nameRess) LIKE LOWER(CONCAT('%', :title, '%'))")
+    List<Ressources> findByTitleContainingIgnoreCase(@Param("title") String title);}
+
+
