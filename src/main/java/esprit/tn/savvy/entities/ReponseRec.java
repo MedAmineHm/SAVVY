@@ -5,18 +5,19 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 @Entity
-@Table( name = "Partnership")
+@Table(name = "ReponseRec")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Partnership implements Serializable {
+public class ReponseRec implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPartnership")
-    Integer idPartnership;
-
+    @Column(name = "idRep")
+    private Integer idRep;
+    private String reponse;
+    @OneToOne
+    private Reclamation reclamation;
 }
