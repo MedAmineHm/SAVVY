@@ -5,19 +5,26 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table( name = "Role")
+@Table(name = "DeliveryPerson")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role implements Serializable {
+public class DeliveryPerson implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idRole")
-    Integer idRole;
-    String Role;
+    @Column(name = "personId")
+    Integer personId;
+    String firstNameP;
+
+    String lastNameP;
+    Integer NumberP;
+    String emailP;
+
+    @OneToMany
+    List<Delivery> deliveries;
 }
