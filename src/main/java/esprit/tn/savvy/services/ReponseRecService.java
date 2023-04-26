@@ -67,6 +67,7 @@ public class ReponseRecService implements IReponseRecService{
         if (reclamation.getEtat().toString().equals("Traite")){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        //a
         reponse.setReclamation(reclamation);
         reclamation.setEtat(Etat.Traite);
         reclamationRepository.save(reclamation);
