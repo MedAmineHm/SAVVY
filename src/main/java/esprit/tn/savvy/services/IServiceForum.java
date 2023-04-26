@@ -1,5 +1,6 @@
 package esprit.tn.savvy.services;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Forum;
 
 import java.util.Date;
@@ -12,6 +13,6 @@ public interface IServiceForum {
     public Forum updateForum (Integer idForum ,Forum forum) ;
     public void deleteForum(Integer idForum);
     List<Forum> searchByTitle(String title) ;
-    List<Forum> getForumsByCategory(String category) ;
-  //  List<Forum> getForumsByDate(Date date) ;
+    List<Forum> getForumsByCategory(Category category) ;
+    List<Forum> getForumsByDate(Date date) ;
 }

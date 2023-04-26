@@ -1,9 +1,11 @@
 package esprit.tn.savvy.services;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Forum;
 import esprit.tn.savvy.repositories.RepForum;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,9 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-
+@RequiredArgsConstructor
 public class ServiceForum implements IServiceForum {
-@Autowired
+
     RepForum repForum ;
 
     @Override
@@ -59,14 +61,14 @@ public class ServiceForum implements IServiceForum {
     }
 
    @Override
-    public List<Forum> getForumsByCategory(String category) {
+    public List<Forum> getForumsByCategory(Category category) {
         return repForum.findByCategory(category);
     }
 
- //   @Override
- //   public List<Forum> getForumsByDate(Date creationDate) {
-    //    return repForum.findByDate(creationDate);
-   // }
+   @Override
+    public List<Forum> getForumsByDate(Date creationDate) {
+        return repForum.findByDate(creationDate);
+    }
 }
 
 

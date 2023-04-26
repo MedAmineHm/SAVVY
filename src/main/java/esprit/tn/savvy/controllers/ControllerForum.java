@@ -1,8 +1,11 @@
 package esprit.tn.savvy.controllers;
 
+import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Forum;
 import esprit.tn.savvy.services.ServiceForum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+@EnableJpaRepositories
 @RestController
+@Slf4j
 public class ControllerForum {
+@Autowired
 
-    @Autowired
     ServiceForum serviceForum;
 
     @GetMapping("getForumById/{idForum}")
@@ -52,16 +56,18 @@ public class ControllerForum {
        return forums ;
    }
     @GetMapping("/category")
-    public List<Forum> getForumByCategory(@RequestParam("category")String category){
-       List<Forum> forums = serviceForum.getForumsByCategory(category );
-        return  forums;
+    public List<Forum> getForumByCategory(@RequestBody Category category){
+        log.info("hhh"+category);
+if(category !=null)
+        return  serviceForum.getForumsByCategory(category);
+return null;
     }
-  //  @GetMapping("/date")
-  //  public ResponseEntity<List<Forum>> getForumsByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date) {
-  //      List<Forum> forums = serviceForum.getForumsByDate(date);
-    //    if (forums.isEmpty()) {
-        //    return ResponseEntity.notFound().build();
-      //  }
-       // return ResponseEntity.ok(forums);
-   // }
+    @GetMapping("/date")
+    public List<Forum> getForumsByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date) {
+      List<Forum> forums = serviceForum.getForumsByDate(date);
+        if (forums.isEmpty()) {
+           return forums;
+       }
+        return forums ;
+    }
 }
