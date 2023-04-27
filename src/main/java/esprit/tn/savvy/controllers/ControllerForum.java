@@ -2,72 +2,70 @@ package esprit.tn.savvy.controllers;
 
 import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Forum;
-import esprit.tn.savvy.services.ServiceForum;
+import esprit.tn.savvy.services.ForumServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-@EnableJpaRepositories
+@RequestMapping
 @RestController
 @Slf4j
 public class ControllerForum {
 @Autowired
-
-    ServiceForum serviceForum;
+    ForumServiceImpl forumService;
 
     @GetMapping("getForumById/{idForum}")
     public Forum getForumById(@PathVariable(value = "idForum") Integer idForum) {
-        return serviceForum.getForumById(idForum);
+        return forumService.getForumById(idForum);
     }
 
     @GetMapping("/getAllForums")
     public List<Forum> getAllForums() {
-        return serviceForum.getAllForums();
+        return forumService.getAllForums();
     }
 
     @PostMapping("/add")
     public Forum createForum(@RequestBody Forum forum) {
-        return serviceForum.createForum(forum);
+        return forumService.createForum(forum);
     }
 
 
-    @PutMapping("updateForum/{idForum}")
-    public Forum updateForum(@PathVariable(value = "idForum") Integer idForum, @RequestBody Forum forum) {
-        return serviceForum.updateForum(idForum, forum);
+    @PutMapping("updateForum")
+    public Forum updateForum(@RequestBody Forum forum) {
+       // log.info("hhh"+forum);
+        return forumService.updateForum(forum);
     }
 
     @DeleteMapping("deleteForum/{idForum}")
     public void  deleteForum(@PathVariable Integer idForum) {
 
-        serviceForum.deleteForum(idForum);
+        forumService.deleteForum(idForum);
     }
 
 
     @GetMapping("/search")
      public List<Forum> searchForumByTitle(@RequestParam("title")String title) {
-        List<Forum> forums=serviceForum.searchByTitle(title) ;
+        List<Forum> forums=forumService.searchByTitle(title) ;
        return forums ;
    }
     @GetMapping("/category")
-    public List<Forum> getForumByCategory(@RequestBody Category category){
-        log.info("hhh"+category);
+    public List<Forum> getForumByCategory(@RequestParam("category") Category category){
+
 if(category !=null)
-        return  serviceForum.getForumsByCategory(category);
+        return  forumService.getForumsByCategory(category);
 return null;
     }
+    /*
     @GetMapping("/date")
-    public List<Forum> getForumsByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date) {
-      List<Forum> forums = serviceForum.getForumsByDate(date);
+    public List<Forum> getForumsByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date creationDate) {
+      List<Forum> forums = forumService.getForumsByDate(creationDate);
         if (forums.isEmpty()) {
            return forums;
        }
         return forums ;
-    }
+    }*/
 }

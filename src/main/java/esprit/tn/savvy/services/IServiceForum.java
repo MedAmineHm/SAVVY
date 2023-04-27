@@ -10,9 +10,9 @@ public interface IServiceForum {
     public Forum getForumById (Integer idForum) ;
     List<Forum> getAllForums() ;
     public Forum createForum(Forum forum) ;
-    public Forum updateForum (Integer idForum ,Forum forum) ;
+    public Forum updateForum (Forum forum) ;
     public void deleteForum(Integer idForum);
     List<Forum> searchByTitle(String title) ;
     List<Forum> getForumsByCategory(Category category) ;
-    List<Forum> getForumsByDate(Date date) ;
+    //   List<Forum> getForumsByDate(Date creationDate) ;
 }

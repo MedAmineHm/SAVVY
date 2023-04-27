@@ -7,15 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 
 @Repository
+public interface ForumRepository extends JpaRepository<Forum,Integer> {
+     List<Forum> findByTitleContainingIgnoreCase(String title);
 
-public interface RepForum extends JpaRepository<Forum,Integer> {
-    List<Forum> findByTitleContainingIgnoreCase(String title);
 
-    List<Forum> findByCategory(Category category);
-       List<Forum> findByDate(Date creationDate);
-
+      List<Forum> findByCategory(Category category);
+     // List<Forum> findByDate(Date creationDate);
 }

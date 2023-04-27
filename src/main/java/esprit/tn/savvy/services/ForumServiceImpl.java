@@ -2,73 +2,61 @@ package esprit.tn.savvy.services;
 
 import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Forum;
-import esprit.tn.savvy.repositories.RepForum;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import esprit.tn.savvy.repositories.ForumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.Date;
 import java.util.List;
-
 @Service
-@RequiredArgsConstructor
-public class ServiceForum implements IServiceForum {
-
-    RepForum repForum ;
-
+public class ForumServiceImpl implements IServiceForum {
+    @Autowired
+    ForumRepository forumRepository;
     @Override
     public Forum getForumById(Integer idForum) {
-        return repForum.findById(idForum).get();
+        return forumRepository.findById(idForum).get();
     }
 
     @Override
     public List<Forum> getAllForums() {
-        List<Forum> f = repForum.findAll() ;
-        return f ;
+        return forumRepository.findAll();
     }
 
     @Override
     public Forum createForum(Forum forum) {
-        return repForum.save(forum);
+        return forumRepository.save(forum);
     }
-// update il 5ra
+
     @Override
-    public Forum updateForum(Integer idForum, Forum forum) {
-        Forum forums = repForum.findById(idForum).get();
-       // forum.setQuestion(forum.getQuestion());
+    public Forum updateForum(Forum forum) {
+       // Forum forums = forumRepository.findById(idForum).get();
+        // forum.setQuestion(forum.getQuestion());
         //forum.setReponse(forum.getReponse());
         //forum.setContent(forum.getContent());
         //forum.setTitle(forum.getTitle());
         //forum.setCreationDate(forum.getCreationDate());
 
-        Forum updatedForum = repForum.save(forum) ;
+       // Forum updatedForum = forumRepository.save(forum) ;
 
-        return updatedForum;
+        return forumRepository.save(forum) ;
     }
 
     @Override
     public void deleteForum(Integer idForum) {
-        repForum.deleteById(idForum);
-
+        forumRepository.deleteById(idForum);
     }
-
-    @Override
+      @Override
     public List<Forum> searchByTitle(String title) {
-       return repForum.findByTitleContainingIgnoreCase(title);
+       return forumRepository.findByTitleContainingIgnoreCase(title);
     }
 
    @Override
     public List<Forum> getForumsByCategory(Category category) {
-        return repForum.findByCategory(category);
+        return forumRepository.findByCategory(category);
     }
-
+/*
    @Override
     public List<Forum> getForumsByDate(Date creationDate) {
-        return repForum.findByDate(creationDate);
-    }
+        return forumRepository.findByDate(creationDate);
+    }*/
 }
-
-
