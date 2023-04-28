@@ -14,5 +14,5 @@ public interface ForumRepository extends JpaRepository<Forum,Integer> {
 
 
       List<Forum> findByCategory(Category category);
-     // List<Forum> findByDate(Date creationDate);
+      //List<Forum> findByDate(Date creationDate);
 }

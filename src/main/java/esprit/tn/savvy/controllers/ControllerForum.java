@@ -59,7 +59,7 @@ if(category !=null)
         return  forumService.getForumsByCategory(category);
 return null;
     }
-    /*
+/*
     @GetMapping("/date")
     public List<Forum> getForumsByDate(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date creationDate) {
       List<Forum> forums = forumService.getForumsByDate(creationDate);

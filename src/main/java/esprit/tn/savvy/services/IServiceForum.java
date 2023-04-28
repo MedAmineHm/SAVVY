@@ -14,5 +14,5 @@ public interface IServiceForum {
     public void deleteForum(Integer idForum);
     List<Forum> searchByTitle(String title) ;
     List<Forum> getForumsByCategory(Category category) ;
-    //   List<Forum> getForumsByDate(Date creationDate) ;
+    //List<Forum> getForumsByDate(Date creationDate) ;
 }

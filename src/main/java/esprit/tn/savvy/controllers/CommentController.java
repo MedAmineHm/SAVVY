@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comments")
+@RequestMapping()
 public class CommentController {
     @Autowired
     CommentServiceImpl commentService;
@@ -36,7 +36,7 @@ public class CommentController {
         return newComment ;
     }
 
-    @PutMapping("update/")
+    @PutMapping("update/{idForum}")
     public Comment updateComment(@RequestBody Comment comment , @PathVariable Integer idForum) {
      Comment updateComment = commentService.updateComment(comment , idForum);
      return comment ;

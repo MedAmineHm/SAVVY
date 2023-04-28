@@ -23,6 +23,7 @@ public class Comment {
     private String description ;
     //@Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+
     private Date creationDate;
 
     @JsonIgnore
