@@ -20,6 +20,7 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, Intege
 
 
     List<Reclamation> findReclamationByDaterec(Date daterec);
+
     List<Reclamation> findReclamationBysujetAndEtatAndDaterec(String sujet, String etat, Date daterec);
     List<Reclamation> findReclamationBysujetAndContenuAndDaterec(String sujet, String contenu, Date daterec);
     List<Reclamation> findReclamationByetatAndContenuAndDaterec(String etat, String contenu, Date daterec);
