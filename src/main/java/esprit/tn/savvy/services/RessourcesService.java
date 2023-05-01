@@ -1,6 +1,5 @@
 package esprit.tn.savvy.services;
 
-import com.google.gson.JsonObject;
 import esprit.tn.savvy.controller.ResourceNotFoundException;
 import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Delivery;
@@ -30,20 +29,20 @@ public class RessourcesService implements IRessourcesService  {
 
     @Autowired
     private RessourcesRepository ressourcesRepository;
-
+@Override
     public List<Ressources> getAllRessources() {
         return ressourcesRepository.findAll();
     }
-
+@Override
     public Ressources getRessourcesById(Integer idRess) {
         return ressourcesRepository.findById(idRess).orElseThrow(() -> new ResourceNotFoundException("Ressources not found with id: " + idRess));
 
     }
-
+@Override
     public Ressources createRessources(Ressources ressources) {
         return ressourcesRepository.save(ressources);
     }
-
+@Override
     public Ressources updateRessources(Integer idRess, Ressources ressources) {
         Ressources existingRessources = getRessourcesById(idRess);
         existingRessources.setIdRess(ressources.getIdRess());
@@ -53,7 +52,7 @@ public class RessourcesService implements IRessourcesService  {
         existingRessources.setImg(ressources.getImg());
         return ressourcesRepository.save(existingRessources);
     }
-
+@Override
     public void deleteRessources(Integer idRess) {
         getRessourcesById(idRess); // to check if resource exists
         ressourcesRepository.deleteById(idRess);
@@ -61,7 +60,7 @@ public class RessourcesService implements IRessourcesService  {
 
     @Autowired
     private UserRepository userRepository;
-
+@Override
     public Ressources assignUserToRessources(Integer userId, Integer ressourcesId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user idUser"));
@@ -104,6 +103,7 @@ public class RessourcesService implements IRessourcesService  {
     public List<Ressources> getFilteredRessources(Category category, Delivery delivery) {
         return ressourcesRepository.findByCategoryAndDelivery(category, delivery);
     }
+    @Override
     public List<Ressources> getRessourcesByUserId(Integer userId) {
         User user = userRepository.findById(userId).orElse(null);
         if (user == null) {
@@ -111,11 +111,13 @@ public class RessourcesService implements IRessourcesService  {
         }
         return ressourcesRepository.findByUser(user);
     }
+    @Override
     public Map<Category, Long> getResourcesAvailableByCategory() {
         List<Ressources> resources = ressourcesRepository.findAll();
         return resources.stream()
                 .collect(Collectors.groupingBy(Ressources::getCategory, Collectors.counting()));
     }
+    @Override
     public Double getAverageResourcesPerUser() {
         Long totalResources = ressourcesRepository.count();
         Long totalUsers = userRepository.count();

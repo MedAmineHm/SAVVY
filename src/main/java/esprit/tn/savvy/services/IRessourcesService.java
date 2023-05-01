@@ -1,6 +1,5 @@
 package esprit.tn.savvy.services;
 
-import com.google.gson.JsonObject;
 import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Delivery;
 import esprit.tn.savvy.entities.Ressources;

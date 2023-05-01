@@ -1,25 +1,17 @@
 package esprit.tn.savvy.controller;
 
-import com.google.gson.JsonObject;
 import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Delivery;
 import esprit.tn.savvy.entities.Ressources;
-import esprit.tn.savvy.entities.User;
-import esprit.tn.savvy.repositories.RessourcesRepository;
-import esprit.tn.savvy.repositories.UserRepository;
 import esprit.tn.savvy.services.RessourcesService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.apache.tomcat.util.http.fileupload.impl.FileUploadIOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +22,6 @@ import java.util.Map;
 public class RessourcesController {
     @Autowired
     private RessourcesService ressourcesService;
-    @Autowired
-    private UserRepository userRepository;
 
 
     @GetMapping("/findall")
@@ -60,8 +50,6 @@ public class RessourcesController {
     }
 
 
-    @Autowired
-    private RessourcesRepository ressourcesRepository;
 
     @PostMapping("/ressources/{idRess}/users/{idUser}")
     public Ressources assignUserToRessources(@PathVariable Integer idRess, @PathVariable Integer idUser) {
