@@ -4,6 +4,7 @@ import esprit.tn.savvy.entities.Category;
 import esprit.tn.savvy.entities.Delivery;
 import esprit.tn.savvy.entities.Ressources;
 import esprit.tn.savvy.services.RessourcesService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/ressources")
+@Tag(name = "ressources")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
 public class RessourcesController {
@@ -60,7 +62,7 @@ public class RessourcesController {
         return ressourcesService.findRessourcesByCategory(category);
     }
 
-    @PostMapping("/")
+    @PostMapping("/save")
     public ResponseEntity<?> saveRessources(@RequestBody Ressources ressources) {
         try {
             ressourcesService.saveRessources(ressources);
@@ -100,10 +102,18 @@ public class RessourcesController {
     public List<Ressources> getRessourcesByUserId(@PathVariable Integer idUser) {
         return ressourcesService.getRessourcesByUserId(idUser);
     }
-    @GetMapping("/resources/stats/available")
-    public Map<Category, Long> getResourcesAvailableByCategory() {
-        return ressourcesService.getResourcesAvailableByCategory();
+    @GetMapping("/stats/available")
+    public ResponseEntity<Map<Category, Long>> getResourcesAvailableByCategory() {
+        try {
+            Map<Category, Long> result = ressourcesService.getResourcesAvailableByCategory();
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
+
     @GetMapping("/verage-resources-per-user")
     public ResponseEntity<Double> getAverageResourcesPerUser() {
         Double averageResourcesPerUser = ressourcesService.getAverageResourcesPerUser();

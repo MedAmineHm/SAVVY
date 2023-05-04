@@ -26,6 +26,9 @@ public interface RessourcesRepository extends JpaRepository<Ressources, Integer>
     List<Ressources> findByUser(User user);
 
     @Query("SELECT r FROM Ressources r WHERE LOWER(r.nameRess) LIKE LOWER(CONCAT('%', :title, '%'))")
-    List<Ressources> findByTitleContainingIgnoreCase(@Param("title") String title);}
+    List<Ressources> findByTitleContainingIgnoreCase(@Param("title") String title);
+    @Query("SELECT r.category, COUNT(r) FROM Ressources r WHERE r.status = 'AVAILABLE' GROUP BY r.category")
+    List<Object[]> getResourcesAvailableByCategory();
+}
 
 

@@ -25,6 +25,9 @@ public class Ressources implements Serializable {
     @JoinColumn(name = "idDelivery")
     Delivery delivery;
     Integer quantityRess;
+    @Column(name = "status")
+    private String status;
+
     String img;
     String nameRess;
 

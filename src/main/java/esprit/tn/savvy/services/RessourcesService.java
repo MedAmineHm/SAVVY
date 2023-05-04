@@ -111,12 +111,17 @@ public class RessourcesService implements IRessourcesService  {
         }
         return ressourcesRepository.findByUser(user);
     }
-    @Override
     public Map<Category, Long> getResourcesAvailableByCategory() {
-        List<Ressources> resources = ressourcesRepository.findAll();
-        return resources.stream()
-                .collect(Collectors.groupingBy(Ressources::getCategory, Collectors.counting()));
+        List<Object[]> result = ressourcesRepository.getResourcesAvailableByCategory();
+        Map<Category, Long> stats = new HashMap<>();
+        for (Object[] obj : result) {
+            Category category = (Category) obj[0];
+            Long count = (Long) obj[1];
+            stats.put(category, count);
+        }
+        return stats;
     }
+
     @Override
     public Double getAverageResourcesPerUser() {
         Long totalResources = ressourcesRepository.count();
