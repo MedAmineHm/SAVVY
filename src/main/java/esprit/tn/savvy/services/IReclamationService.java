@@ -1,7 +1,10 @@
 package esprit.tn.savvy.services;
 
 import esprit.tn.savvy.entities.Reclamation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +18,7 @@ public interface IReclamationService {
     Reclamation updateReclamation(Reclamation reclamation);
     Reclamation retrieveReclamation(Integer idReclamation);
     List<Reclamation> getAllReclamations();
-    void removeReclamation(Reclamation reclamation);
+    ResponseEntity <HttpStatus> removeReclamation(Integer id);
 
 
 Map<String, Long> getReclamationsCountByState();
@@ -24,7 +27,7 @@ Map<String, Long> getReclamationsCountByState();
 
 
 
-    List<Reclamation> advancedSearch(String sujet, String etat, String contenu, Date daterec);
+    List<Reclamation> advancedSearch(String sujet, String etat, String contenu, LocalDateTime daterec);
 
 
 }

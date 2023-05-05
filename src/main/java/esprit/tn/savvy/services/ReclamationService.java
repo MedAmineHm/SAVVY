@@ -7,10 +7,13 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import esprit.tn.savvy.repsitory.ReclamationRepository;
 
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -32,6 +35,7 @@ public class ReclamationService implements IReclamationService {
     @Override
     public Reclamation addReclamation(Reclamation reclamation) {
         reclamation.setEtat(Etat.Non_Traite);
+        reclamation.setDaterec(LocalDateTime.now());
         return reclamationRepository.save(reclamation);
     }
 
@@ -60,8 +64,9 @@ public class ReclamationService implements IReclamationService {
     }
 
     @Override
-    public void removeReclamation(Reclamation reclamation) {
-
+    public ResponseEntity<HttpStatus> removeReclamation(Integer id) {
+        reclamationRepository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
@@ -97,8 +102,8 @@ public class ReclamationService implements IReclamationService {
 
 
 
-   @Override
-    public List<Reclamation> advancedSearch(String sujet, String etat, String contenu, Date daterec) {
+    @Override
+    public List<Reclamation> advancedSearch(String sujet, String etat, String contenu, LocalDateTime daterec) {
         if (sujet == null && etat == null && contenu == null && daterec == null) {
             return getAllReclamations();
         } else if (sujet != null && etat == null && contenu == null && daterec == null) {
@@ -125,6 +130,7 @@ public class ReclamationService implements IReclamationService {
             return reclamationRepository.findReclamationBysujetAndEtatAndContenuAndDaterec(sujet, etat, contenu, daterec);
         }
     }
+
 
 
 

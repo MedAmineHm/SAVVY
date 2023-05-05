@@ -1,12 +1,14 @@
 package esprit.tn.savvy.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -25,12 +27,12 @@ public class Reclamation implements Serializable {
     @Enumerated(EnumType.STRING)
     private Etat etat;
     String contenu;
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE,pattern = "dd-MM-yyyy")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    Date daterec;
+
+    @Column(columnDefinition = "Timestamp")
+    LocalDateTime daterec;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     User user;
 
     /*@OneToOne(mappedBy = "reclamation")

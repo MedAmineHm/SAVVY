@@ -4,6 +4,7 @@ import esprit.tn.savvy.entities.Reclamation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +20,12 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, Intege
     List<Reclamation> findReclamationByetatAndContenu(String etat, String contenu);
 
 
-    List<Reclamation> findReclamationByDaterec(Date daterec);
+    List<Reclamation> findReclamationByDaterec(LocalDateTime daterec);
 
-    List<Reclamation> findReclamationBysujetAndEtatAndDaterec(String sujet, String etat, Date daterec);
-    List<Reclamation> findReclamationBysujetAndContenuAndDaterec(String sujet, String contenu, Date daterec);
-    List<Reclamation> findReclamationByetatAndContenuAndDaterec(String etat, String contenu, Date daterec);
-    List<Reclamation> findReclamationBysujetAndEtatAndContenuAndDaterec(String sujet, String etat, String contenu, Date daterec);
+    List<Reclamation> findReclamationBysujetAndEtatAndDaterec(String sujet, String etat, LocalDateTime daterec);
+    List<Reclamation> findReclamationBysujetAndContenuAndDaterec(String sujet, String contenu, LocalDateTime daterec);
+    List<Reclamation> findReclamationByetatAndContenuAndDaterec(String etat, String contenu, LocalDateTime daterec);
+    List<Reclamation> findReclamationBysujetAndEtatAndContenuAndDaterec(String sujet, String etat, String contenu, LocalDateTime daterec);
 
 
 

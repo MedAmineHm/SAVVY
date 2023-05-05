@@ -11,6 +11,7 @@ import esprit.tn.savvy.entities.Reclamation;
 import esprit.tn.savvy.services.IReclamationService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequestMapping("/reclamations")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ReclamationController {
 
     IReclamationService reclamationService;
@@ -45,12 +47,10 @@ public class ReclamationController {
     public List<Reclamation> getAllReclamations() {
         return reclamationService.getAllReclamations();
     }
-
     @DeleteMapping("/del/{idReclamation}")
     public void removeReclamation(@PathVariable Integer idReclamation) {
-        Reclamation reclamation = new Reclamation();
-        reclamation.setIdReclamation(idReclamation);
-        reclamationService.removeReclamation(reclamation);
+
+        reclamationService.removeReclamation(idReclamation);
     }
 
 
@@ -75,16 +75,18 @@ public class ReclamationController {
 
 
 
-   @GetMapping("/recherche")
+    @GetMapping("/recherche")
     public List<Reclamation> advancedSearch(
             @RequestParam(name = "sujet", required = false) String sujet,
             @RequestParam(name = "etat", required = false) String etat,
             @RequestParam(name = "contenu", required = false) String contenu,
-            @RequestParam(name = "date_rec", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date daterec) {
+            @RequestParam(name = "date_rec", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime daterec) {
 
         // Call the service method with the new parameter
         return reclamationService.advancedSearch(sujet, etat, contenu, daterec);
     }
+
+
 
 
 
