@@ -76,6 +76,7 @@ public class DeliveryPersonService implements IDeliveryPersonService {
         }
         return availableDeliveryPersons;
     }
+    /*
     @Override
     public DeliveryPerson assignDeliveryToDeliveryPersonAvailable(Integer idDelivery) {
         Delivery delivery = rd.findById(idDelivery).orElse(null);
@@ -94,6 +95,8 @@ public class DeliveryPersonService implements IDeliveryPersonService {
             throw new RuntimeException("Delivery not found");
         }
     }
+
+     */
 
     }
 

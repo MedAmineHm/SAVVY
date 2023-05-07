@@ -61,7 +61,7 @@ public class ControllerDeliveryPerson {
         }
     }
 
-
+/*
     @PutMapping("/{idPerson}/deliveries/{idDelivery}")
     public ResponseEntity<?> assignDeliveryToDeliveryPersonAvailable(@PathVariable("idPerson") Integer idPerson, @PathVariable("idDelivery") Integer idDelivery) {
         try {
@@ -71,5 +71,7 @@ public class ControllerDeliveryPerson {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+ */
 
 }

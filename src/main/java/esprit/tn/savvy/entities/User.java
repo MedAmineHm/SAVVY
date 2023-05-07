@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -20,12 +22,19 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUser")
      Integer idUser;
-
      String firstName;
-
-     String lastName;
-
+    String lastName;
+     String username;
      String email;
+     String password;
+     String address;
+    @Temporal (TemporalType.DATE)
+     Date dayOfBirth;
+     String token;
+
+    String telNum;
+    @Enumerated(EnumType.STRING)
+    Role role;
      @OneToMany
      Set<Reclamation> reclamations ;
      @OneToMany(mappedBy = "user")
@@ -37,8 +46,6 @@ public class User implements Serializable {
     Set<Event> events;
      @ManyToMany(mappedBy = "users")
      Set<Forum> forums;
-     @OneToOne
-     Role roles;
 
 
 }

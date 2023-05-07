@@ -38,6 +38,7 @@ public class DeliveryService implements IDeliveryService{
 
     @Override
     public Delivery retrievedelivery(Integer idDelivery) {
+
         return rd.findById(idDelivery).orElse(null);
     }
 

@@ -88,9 +88,9 @@ public class ControllerDelivery {
     }
 
     @GetMapping("calculate/{origin}/{destination}")
-    public double calculateDistance(@PathVariable("origin") double[] origin,@PathVariable("destination") double[] destination)
+    public String calculateDistance(@PathVariable("origin") double[] origin,@PathVariable("destination") double[] destination)
     {
-        return deliveryService.calculateDistance(origin,destination);
+        return deliveryService.calculateDistance(origin,destination)+" KM";
     }
     @PostMapping("/notification")
     public ResponseEntity<String> sendDeliveryNotification(@RequestBody Delivery delivery, @RequestParam String email) {
