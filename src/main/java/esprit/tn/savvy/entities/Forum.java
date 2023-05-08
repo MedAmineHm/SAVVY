@@ -8,12 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-<<<<<<< HEAD
 import java.util.Set;
-=======
 import java.util.Date;
 import java.util.List;
->>>>>>> 52f775271a1b8ceac12a48b41e11ff73a05accf0
 
 @Entity
 @Table( name = "Forum")
@@ -31,14 +28,12 @@ public class Forum implements Serializable {
     Integer idForum;
     String Question;
     String Reponse;
-<<<<<<< HEAD
     @OneToMany
     Set<Event> events;
     @ManyToMany
     Set<User> users;
 
-}
-=======
+
     String content ;
     String title;
     @Enumerated(EnumType.STRING)
@@ -54,4 +49,3 @@ public class Forum implements Serializable {
 //@ManyToOne
  //User user ;
 }
->>>>>>> 52f775271a1b8ceac12a48b41e11ff73a05accf0
