@@ -9,11 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 @RequestMapping
 @RestController
 @Slf4j
+@CrossOrigin("*")
 public class ControllerForum {
 @Autowired
     ForumServiceImpl forumService;
@@ -30,6 +31,8 @@ public class ControllerForum {
 
     @PostMapping("/add")
     public Forum createForum(@RequestBody Forum forum) {
+        Date  date=new Date();
+        forum.setCreationDate(date);
         return forumService.createForum(forum);
     }
 
@@ -52,12 +55,11 @@ public class ControllerForum {
         List<Forum> forums=forumService.searchByTitle(title) ;
        return forums ;
    }
-    @GetMapping("/category")
-    public List<Forum> getForumByCategory(@RequestParam("category") Category category){
-
-if(category !=null)
+    @GetMapping("/category/{category}")
+    public List<Forum> getForumByCategory(@PathVariable("category") Category category){
+        if(category !=null)
         return  forumService.getForumsByCategory(category);
-return null;
+       return null;
     }
 /*
     @GetMapping("/date")

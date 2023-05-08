@@ -75,6 +75,8 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public List<Comment> getCommentsByForum(Forum forum) {
+
         return commentRepository.findByForum(forum);
+
     }
 }
