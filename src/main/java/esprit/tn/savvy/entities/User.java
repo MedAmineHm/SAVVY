@@ -6,10 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-<<<<<<< HEAD
+
 import java.util.List;
-=======
->>>>>>> 52f775271a1b8ceac12a48b41e11ff73a05accf0
 import java.util.Set;
 
 @Entity
@@ -34,7 +32,6 @@ public class User implements Serializable {
     private List<Reservation> reservations;
 
 
-<<<<<<< HEAD
     @OneToMany
     Set<Reclamation> reclamations ;
     @OneToMany(mappedBy = "user")
@@ -50,8 +47,5 @@ public class User implements Serializable {
     Role roles;
 
 }
-=======
    // @OneToMany(mappedBy = "forum")
     //private Set<Forum> forum ;
-}
->>>>>>> 52f775271a1b8ceac12a48b41e11ff73a05accf0
